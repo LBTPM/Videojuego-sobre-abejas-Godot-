@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bql7imkqas2uj"]
+
+[ext_resource type="Texture2D" uid="uid://dbpuk6ofin8lg" path="res://Assets/Sprites_abejas/Polen.png" id="1_han0g"]
+[ext_resource type="Script" uid="uid://iblk56jlgxcq" path="res://Scripts/gui.gd" id="1_u8rov"]
+[ext_resource type="FontFile" uid="uid://dnmum5aokx7lu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_u8rov"]
+[ext_resource type="FontFile" uid="uid://uwobqwg541w3" path="res://Assets/fonts/PixelOperator8.ttf" id="3_2j4er"]
+[ext_resource type="Texture2D" uid="uid://hgftabnta5yc" path="res://Assets/Sprites_abejas/Miel.png" id="4_1clfd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3do7n"]
+bg_color = Color(0.704156, 0.58819, 0.239029, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.416424, 0.334267, 0.0792505, 1)
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_u8rov")
+
+[node name="Panel_polen" type="Panel" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3do7n")
+
+[node name="Imagen" type="TextureRect" parent="Panel_polen"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("1_han0g")
+
+[node name="Nombre" type="Label" parent="Panel_polen"]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 5.0
+offset_right = 140.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_u8rov")
+text = "Polen:"
+
+[node name="Cantidad" type="Label" parent="Panel_polen"]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 25.0
+offset_right = 192.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("3_2j4er")
+text = "0"
+vertical_alignment = 1
+
+[node name="Panel_polen2" type="Panel" parent="."]
+offset_left = 241.0
+offset_top = 10.0
+offset_right = 441.0
+offset_bottom = 60.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3do7n")
+
+[node name="Imagen" type="TextureRect" parent="Panel_polen2"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 45.0
+offset_bottom = 45.0
+texture = ExtResource("4_1clfd")
+
+[node name="Nombre" type="Label" parent="Panel_polen2"]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 5.0
+offset_right = 140.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_u8rov")
+text = "Miel:"
+
+[node name="Cantidad" type="Label" parent="Panel_polen2"]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 25.0
+offset_right = 193.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_2j4er")
+text = "0"
+vertical_alignment = 1

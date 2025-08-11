@@ -6,7 +6,7 @@ const ABEJA = preload("res://Escenas/abeja.tscn")
 
 @export var cant_polen_para_miel: int = 50
 @export var tiempo_miel: int = 20
-@export var ml_miel_celda: float = 2
+@export var ml_miel_celda: int = 2
 @export var max_celdas := 10
 
 # Posicion flores
@@ -15,15 +15,18 @@ var pos_polen : Array[Vector2]
 
 # Variables
 var cant_abj: int = 3
-var ml_miel: float = 0
-var g_polen: int = 0
+var ml_miel: int = 0 : get = _get_ml_miel, set = _add_ml_miel
+var g_polen: int = 0 : get = _get_g_polen, set = _add_g_polen
 
 var celdas_miel_prod := 0
 var celdas_miel := 0
 var nuevas_celdas_miel := 0
 
+var game_control = get_parent()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	game_control = get_parent()
 	timer_miel.wait_time = tiempo_miel
 	timer_miel.start()
 	zonas_polen = get_node("../Zonas_polen").get_children()
@@ -40,19 +43,34 @@ func _ready() -> void:
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if self.is_ancestor_of(area):
-		g_polen += area.c_polen_actual
+		_add_g_polen(area._get_c_polen_actual()) 
 		print("Granos polen: " + str(g_polen))
 		area._add_c_polen_actual(-area._get_c_polen_actual())
 
 func _process(delta: float) -> void:
-	if g_polen >= cant_polen_para_miel and celdas_miel + celdas_miel_prod + nuevas_celdas_miel <= max_celdas:
-		g_polen -= cant_polen_para_miel
+	if _get_g_polen() >= cant_polen_para_miel and celdas_miel + celdas_miel_prod + nuevas_celdas_miel <= max_celdas:
+		_add_g_polen(-cant_polen_para_miel)
 		nuevas_celdas_miel += 1
 		print("Granos polen: " + str(g_polen))
+	
 
 func _on_timer_miel_timeout() -> void:
-	ml_miel += celdas_miel_prod*ml_miel_celda
+	_add_ml_miel(celdas_miel_prod*ml_miel_celda) 
 	celdas_miel += celdas_miel_prod
 	celdas_miel_prod = 0
 	celdas_miel_prod += nuevas_celdas_miel
 	nuevas_celdas_miel = 0
+
+func _add_g_polen(valor):
+	g_polen += valor
+	game_control._add_polen_total(valor)
+	
+func _get_g_polen():
+	return g_polen
+	
+func _add_ml_miel(valor):
+	ml_miel += valor
+	game_control._add_miel_total(valor)
+	
+func _get_ml_miel():
+	return ml_miel
