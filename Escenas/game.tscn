@@ -1,0 +1,119 @@
+[gd_scene load_steps=9 format=4 uid="uid://drcl4e0uw1eg6"]
+
+[ext_resource type="PackedScene" uid="uid://cpr8i687m6f3" path="res://Escenas/Panal.tscn" id="1_0bm41"]
+[ext_resource type="Texture2D" uid="uid://yr853ypmnu7q" path="res://Assets/Sprites_abejas/cielo.png" id="1_5g6uq"]
+[ext_resource type="Texture2D" uid="uid://bg5q2xnrc63lu" path="res://Assets/Sprites_abejas/Tileset_flores.png" id="2_obr3f"]
+[ext_resource type="PackedScene" uid="uid://co2t2qiryyn62" path="res://Escenas/zona_polen.tscn" id="3_3418m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5eqp"]
+texture = ExtResource("1_5g6uq")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ijxpu"]
+tile_size = Vector2i(8, 8)
+sources/2 = SubResource("TileSetAtlasSource_o5eqp")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3418m"]
+texture = ExtResource("2_obr3f")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5g6uq"]
+tile_size = Vector2i(8, 8)
+sources/0 = SubResource("TileSetAtlasSource_3418m")
+
+[node name="Game" type="Node"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(56, 31)
+zoom = Vector2(10, 10)
+
+[node name="Tilemap" type="Node2D" parent="."]
+
+[node name="Background" type="TileMapLayer" parent="Tilemap"]
+visible = false
+tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAD//wYAAgAAAAAAAAD//wcAAgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAABAP//AgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAACAAYAAgAAAAAAAAACAAcAAgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAYAAgAAAAAAAAADAAcAAgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAYAAgAAAAAAAAAEAAcAAgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAYAAgAAAAAAAAAFAAcAAgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAcAAgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAYAAgAAAAAAAAAIAAcAAgAAAAAAAAAJAP//AgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAcAAgAAAAAAAAAKAP//AgAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAMAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAUAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAcAAgAAAAAAAAALAP//AgAAAAAAAAALAAAAAgAAAAAAAAALAAEAAgAAAAAAAAALAAIAAgAAAAAAAAALAAMAAgAAAAAAAAALAAQAAgAAAAAAAAALAAUAAgAAAAAAAAALAAYAAgAAAAAAAAALAAcAAgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAUAAgAAAAAAAAAMAAYAAgAAAAAAAAAMAAcAAgAAAAAAAAANAP//AgAAAAAAAAANAAAAAgAAAAAAAAANAAEAAgAAAAAAAAANAAIAAgAAAAAAAAANAAMAAgAAAAAAAAANAAQAAgAAAAAAAAANAAUAAgAAAAAAAAANAAYAAgAAAAAAAAANAAcAAgAAAAAAAAAOAP//AgAAAAAAAAAOAAAAAgAAAAAAAAAOAAEAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAMAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAUAAgAAAAAAAAAOAAYAAgAAAAAAAAAOAAcAAgAAAAAAAAA=")
+tile_set = SubResource("TileSet_ijxpu")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Tilemap"]
+tile_map_data = PackedByteArray("AAANAAcAAAAAAAEAAAAMAAcAAAABAAEAAAALAAcAAAABAAEAAAAKAAcAAAAAAAEAAAAJAAcAAAACAAEAAAAIAAcAAAABAAEAAAAHAAcAAAABAAEAAAAGAAcAAAAAAAEAAAAFAAcAAAABAAEAAAAEAAcAAAACAAEAAAADAAcAAAAAAAEAAAACAAcAAAABAAEAAAABAAcAAAACAAEAAAAAAAcAAAACAAEAAAABAAYAAAAAAAIAAAAEAAYAAAAAAAIAAAAMAAYAAAAAAAIAAAAJAAYAAAAAAAIAAAAAAAYAAAADAAAAAAACAAYAAAACAAAAAAADAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAABAAAAAAAIAAYAAAACAAAAAAAKAAYAAAABAAAAAAALAAYAAAADAAAAAAANAAYAAAABAAAAAAD//wcAAAAAAAEAAAAOAAcAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_5g6uq")
+
+[node name="Zonas_polen" type="Node2D" parent="."]
+
+[node name="Zona_polen8" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(110, 51)
+
+[node name="Zona_polen" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(66, 51)
+
+[node name="Zona_polen9" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(62, 51)
+
+[node name="Zona_polen10" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(58, 51)
+
+[node name="Zona_polen11" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(53, 52)
+
+[node name="Zona_polen12" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(49, 52)
+
+[node name="Zona_polen13" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(46, 53)
+
+[node name="Zona_polen14" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(42, 51)
+
+[node name="Zona_polen15" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(30, 53)
+
+[node name="Zona_polen16" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(26, 51)
+
+[node name="Zona_polen17" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(22, 53)
+
+[node name="Zona_polen18" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(18, 51)
+
+[node name="Zona_polen19" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(6, 52)
+
+[node name="Zona_polen20" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(2, 51)
+
+[node name="Zona_polen2" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(70, 53)
+
+[node name="Zona_polen3" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(82, 51)
+
+[node name="Zona_polen4" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(86, 51)
+
+[node name="Zona_polen5" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(90, 51)
+
+[node name="Zona_polen6" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(94, 52)
+
+[node name="Zona_polen7" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+position = Vector2(106, 51)
+
+[node name="Panal" parent="." instance=ExtResource("1_0bm41")]
+position = Vector2(12, 48)
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

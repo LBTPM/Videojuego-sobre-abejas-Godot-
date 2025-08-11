@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://c31viyiypj41v"]
+
+[ext_resource type="Texture2D" uid="uid://2nqmuybh82yq" path="res://Assets/Sprites_abejas/Bee.png" id="1_spl10"]
+[ext_resource type="Script" uid="uid://kfbe4kwvber" path="res://Scripts/abeja.gd" id="1_xnnt1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy2gw"]
+atlas = ExtResource("1_spl10")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_186t4"]
+atlas = ExtResource("1_spl10")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_538kp"]
+atlas = ExtResource("1_spl10")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm3r8"]
+atlas = ExtResource("1_spl10")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5u4i"]
+atlas = ExtResource("1_spl10")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_exxdr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy2gw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_186t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_538kp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm3r8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5u4i")
+}],
+"loop": true,
+"name": &"volar",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyfth"]
+size = Vector2(2, 1)
+
+[sub_resource type="Animation" id="Animation_xnnt1"]
+resource_name = "Polinizando"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.8), Vector2(1, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uosor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uosor"]
+_data = {
+&"Polinizando": SubResource("Animation_xnnt1"),
+&"RESET": SubResource("Animation_uosor")
+}
+
+[node name="Abeja" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_xnnt1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_exxdr")
+animation = &"volar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tyfth")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_uosor")
+}
+
+[node name="timer_polin" type="Timer" parent="."]
+one_shot = true
+
+[node name="timer_panal" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="timeout" from="timer_polin" to="." method="_on_timer_polin_timeout"]
+[connection signal="timeout" from="timer_panal" to="." method="_on_timer_panal_timeout"]
