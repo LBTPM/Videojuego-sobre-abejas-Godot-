@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://tuye7x84seaf"]
+
+[ext_resource type="StyleBox" uid="uid://g1pfv38qgy1a" path="res://Estilos/Panel.tres" id="1_illch"]
+[ext_resource type="Script" uid="uid://dugo7wksh8rgo" path="res://Scripts/panel_nivel.gd" id="2_ejdlo"]
+[ext_resource type="FontFile" uid="uid://dnmum5aokx7lu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_sp2ea"]
+
+[node name="Panel" type="Panel"]
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_styles/panel = ExtResource("1_illch")
+script = ExtResource("2_ejdlo")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_sp2ea")
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1

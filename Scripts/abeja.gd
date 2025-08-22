@@ -1,5 +1,7 @@
 extends Area2D
 
+
+# cambio vuelta con nectar
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var timer_polin: Timer = $timer_polin
@@ -10,7 +12,6 @@ extends Area2D
 @export var min_vuelo := 2
 @export var max_vuelo: int = 10
 @export var polin_time := 3
-@export var c_polen_max := 100
 @export var prob_min_volver := 50
 
 enum Estados {PANAL = 0,VOLAR = 1,POLIN = 2}
@@ -27,13 +28,23 @@ var c_nodos := 1
 var volver : bool = false
 
 #Variables polen
+@export var c_polen_max := 50
 var c_polen_actual := 0: set = _add_c_polen_actual, get = _get_c_polen_actual
+
+#Variables nectar
+@export var nectar_max := 100
+var nectar_actual := 0: set = _add_nectar_actual, get = _get_nectar_actual
 
 func _add_c_polen_actual(valor):
 	c_polen_actual = min(c_polen_actual + valor, c_polen_max)
 func _get_c_polen_actual():
 		return c_polen_actual
-			
+
+func _add_nectar_actual(valor):
+	nectar_actual = min(nectar_actual + valor, nectar_max)
+func _get_nectar_actual():
+		return nectar_actual
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	destino = position
@@ -87,7 +98,7 @@ func _process(delta: float) -> void:
 			estado_anterior = Estados.POLIN
 			
 func probabilidad_volver():
-	var prob = randi_range(0, _get_c_polen_actual())
+	var prob = randi_range(0, _get_nectar_actual())
 	if prob >= prob_min_volver:
 		volver = true
 
@@ -110,6 +121,9 @@ func _on_timer_polin_timeout() -> void:
 		estado_actual = Estados.PANAL
 	else:
 		estado_actual = Estados.VOLAR
+		
+	print("Polen: " + str(c_polen_actual))
+	print("Nectar: " + str(nectar_actual))
 	
 
 func _on_timer_panal_timeout() -> void:

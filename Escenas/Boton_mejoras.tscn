@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://cltfocc1ib8xe"]
+
+[ext_resource type="Script" uid="uid://3t0duaeewc7h" path="res://Scripts/boton_mejoras.gd" id="1_ik11s"]
+[ext_resource type="PackedScene" uid="uid://tuye7x84seaf" path="res://Escenas/Panel_nivel.tscn" id="2_fj4uh"]
+[ext_resource type="StyleBox" uid="uid://52ooho3hprj1" path="res://Estilos/Paneles_cool.tres" id="2_v83m3"]
+[ext_resource type="FontFile" uid="uid://dnmum5aokx7lu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_wcynd"]
+[ext_resource type="StyleBox" uid="uid://c6mnesjv2cqky" path="res://Estilos/Boton_hover.tres" id="4_fj4uh"]
+[ext_resource type="StyleBox" uid="uid://cmqd0ltm3wqnr" path="res://Estilos/Boton_presion.tres" id="5_s7fan"]
+[ext_resource type="Texture2D" uid="uid://hgftabnta5yc" path="res://Assets/Sprites_abejas/Miel.png" id="7_fj4uh"]
+[ext_resource type="Script" uid="uid://bid8wlykrrw0v" path="res://Scripts/boton_coste.gd" id="7_s7fan"]
+
+[node name="Boton_mejoras" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ik11s")
+obj_nivel = ExtResource("2_fj4uh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_styles/panel = ExtResource("2_v83m3")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_wcynd")
+text = "Objeto X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+offset_left = 215.0
+offset_right = 265.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_wcynd")
+theme_override_styles/hover = ExtResource("4_fj4uh")
+theme_override_styles/pressed = ExtResource("5_s7fan")
+theme_override_styles/normal = ExtResource("2_v83m3")
+text = "+"
+script = ExtResource("7_s7fan")
+
+[node name="Panel" type="Panel" parent="Button"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_styles/panel = ExtResource("2_v83m3")
+
+[node name="Coste" type="Label" parent="Button/Panel"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("2_wcynd")
+text = "X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Button/Panel"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 5.0
+offset_right = 145.0
+offset_bottom = 45.0
+texture = ExtResource("7_fj4uh")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

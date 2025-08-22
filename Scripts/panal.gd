@@ -4,7 +4,7 @@ extends Area2D
 const ABEJA = preload("res://Escenas/abeja.tscn")
 @onready var timer_miel: Timer = $Timer_miel
 
-@export var cant_polen_para_miel: int = 50
+@export var cant_nectar_para_miel: int = 50
 @export var tiempo_miel: int = 20
 @export var ml_miel_celda: int = 2
 @export var max_celdas := 10
@@ -15,14 +15,16 @@ var pos_polen : Array[Vector2]
 
 # Variables
 var cant_abj: int = 3
+
 var ml_miel: int = 0 : get = _get_ml_miel, set = _add_ml_miel
 var g_polen: int = 0 : get = _get_g_polen, set = _add_g_polen
+var nectar : int = 0 : get = _get_nectar, set = _add_nectar
 
 var celdas_miel_prod := 0
 var celdas_miel := 0
 var nuevas_celdas_miel := 0
 
-var game_control = get_parent()
+var game_control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -43,18 +45,26 @@ func _ready() -> void:
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if self.is_ancestor_of(area):
-		_add_g_polen(area._get_c_polen_actual()) 
+		_add_g_polen(area._get_c_polen_actual())
+		_add_nectar(area._get_nectar_actual())
 		print("Granos polen: " + str(g_polen))
+		print("Nectar panal: " + str(nectar))
 		area._add_c_polen_actual(-area._get_c_polen_actual())
+		area._add_nectar_actual(-area._get_nectar_actual())
 
 func _process(delta: float) -> void:
-	if _get_g_polen() >= cant_polen_para_miel and celdas_miel + celdas_miel_prod + nuevas_celdas_miel <= max_celdas:
-		_add_g_polen(-cant_polen_para_miel)
+	if _get_nectar() >= cant_nectar_para_miel and celdas_miel + celdas_miel_prod + nuevas_celdas_miel <= max_celdas:
+		_add_nectar(-cant_nectar_para_miel)
 		nuevas_celdas_miel += 1
-		print("Granos polen: " + str(g_polen))
+		print("Nectar: " + str(nectar))
 	
 
 func _on_timer_miel_timeout() -> void:
+	if nuevas_celdas_miel > 0:
+		game_control.gen_miel = true
+	else:
+		game_control.gen_miel = false
+		
 	_add_ml_miel(celdas_miel_prod*ml_miel_celda) 
 	celdas_miel += celdas_miel_prod
 	celdas_miel_prod = 0
@@ -74,3 +84,10 @@ func _add_ml_miel(valor):
 	
 func _get_ml_miel():
 	return ml_miel
+	
+func _add_nectar(valor):
+	nectar += valor
+	game_control._add_nectar_total(valor)
+	
+func _get_nectar():
+	return nectar
