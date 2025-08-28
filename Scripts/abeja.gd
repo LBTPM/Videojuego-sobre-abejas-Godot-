@@ -121,6 +121,7 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 		area._add_c_polen_actual(-polen_rec)
 		area._add_nectar_actual(-nectar_rec)
 	elif area.get_collision_layer() == 1 and area.is_ancestor_of(self):
+		# Entregando polen
 		visible = false
 		animated_sprite_2d.play("default")
 		timer_panal.start()

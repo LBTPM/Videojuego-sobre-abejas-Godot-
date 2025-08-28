@@ -5,6 +5,7 @@ const ABEJA = preload("res://Escenas/abeja.tscn")
 @onready var timer_miel: Timer = $Timer_miel
 
 @export var cant_nectar_para_miel: int = 50
+@export var maximo_polen_celda: int = 100 
 @export var tiempo_miel: int = 20
 @export var ml_miel_celda: int = 1
 @export var max_celdas := 10
@@ -12,17 +13,10 @@ const ABEJA = preload("res://Escenas/abeja.tscn")
 # Posicion flores
 var zonas_polen
 var pos_polen : Array[Vector2]
+var celdas : Array[Celda]
 
 # Variables
 var cant_abj: int = 3
-
-var ml_miel: int = 0 : get = _get_ml_miel, set = _add_ml_miel
-var g_polen: int = 0 : get = _get_g_polen, set = _add_g_polen
-var nectar : int = 0 : get = _get_nectar, set = _add_nectar
-
-var celdas_miel_prod := 0
-var celdas_miel := 0
-var nuevas_celdas_miel := 0
 
 var game_control
 
@@ -32,62 +26,73 @@ func _ready() -> void:
 	timer_miel.wait_time = tiempo_miel
 	timer_miel.start()
 	zonas_polen = get_node("../Zonas_polen").get_children()
+	
+	# Recoger lugares polen
 	for x in zonas_polen:
 		pos_polen.append(x.global_position)
 	
+	# Iniciar abejas
 	for x in cant_abj:
 		var abeja = ABEJA.instantiate()
 		abeja.visible = true
 		abeja.position = Vector2(0,-2)
 		abeja.pos_polen = pos_polen
 		add_child(abeja)
+		
+	# Crear celdas
+	for x in max_celdas:
+		var nueva_celda = Celda.new()
+		nueva_celda.iniciar(cant_nectar_para_miel,maximo_polen_celda)
+		celdas.append(nueva_celda)
+		
+		
+func guardar_polen(valor:int):
+	for x in celdas:
+		if valor > 0 and x.estado == x.estados.POLEN:
+			valor -= x._add_cantidad(valor)
+			x.mostrar()
+	if valor > 0:
+		for x in celdas:
+			if valor > 0 and x.estado == x.estados.VACIO:
+				x.cambiar_tipo(x.estados.POLEN)
+				valor -= x._add_cantidad(valor)
+				x.mostrar()
+				
+func guardar_nectar(valor:int):
+	for x in celdas:
+		if valor > 0 and x.estado == x.estados.NECTAR:
+			valor -= x._add_cantidad(valor)
+			x.mostrar()
+	if valor > 0:
+		for x in celdas:
+			if valor > 0 and x.estado == x.estados.VACIO:
+				x.cambiar_tipo(x.estados.NECTAR)
+				valor -= x._add_cantidad(valor)		
+				x.mostrar()		
 
+func existe_miel_proc()-> bool:
+	var existencia = false
+	for x in celdas:
+		if x.estado == x.estados.NECTAR and x._get_cantidad() == x.almacen_max:
+			existencia = true
+	return existencia
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	
 	if self.is_ancestor_of(area):
-		_add_g_polen(area._get_c_polen_actual())
-		_add_nectar(area._get_nectar_actual())
-		print("Granos polen: " + str(g_polen))
-		print("Nectar panal: " + str(nectar))
+		guardar_polen(area._get_c_polen_actual())
+		guardar_nectar(area._get_nectar_actual())
 		area._add_c_polen_actual(-area._get_c_polen_actual())
 		area._add_nectar_actual(-area._get_nectar_actual())
 
 func _process(delta: float) -> void:
-	if _get_nectar() >= cant_nectar_para_miel and celdas_miel + celdas_miel_prod + nuevas_celdas_miel <= max_celdas:
-		_add_nectar(-cant_nectar_para_miel)
-		nuevas_celdas_miel += 1
-		print("Nectar: " + str(nectar))
-	
-
-func _on_timer_miel_timeout() -> void:
-	if nuevas_celdas_miel > 0:
+	if existe_miel_proc():
 		game_control.gen_miel = true
 	else:
 		game_control.gen_miel = false
-		
-	_add_ml_miel(celdas_miel_prod*ml_miel_celda) 
-	celdas_miel += celdas_miel_prod
-	celdas_miel_prod = 0
-	celdas_miel_prod += nuevas_celdas_miel
-	nuevas_celdas_miel = 0
+	
 
-func _add_g_polen(valor):
-	g_polen += valor
-	game_control._add_polen_total(valor)
-	
-func _get_g_polen():
-	return g_polen
-	
-func _add_ml_miel(valor):
-	ml_miel += valor
-	game_control._add_miel_total(valor)
-	
-func _get_ml_miel():
-	return ml_miel
-	
-func _add_nectar(valor):
-	nectar += valor
-	game_control._add_nectar_total(valor)
-	
-func _get_nectar():
-	return nectar
+func _on_timer_miel_timeout() -> void:
+	for x in celdas:
+		if x.estado == x.estados.NECTAR and x._get_cantidad() == x.almacen_max:
+			x.cambiar_tipo(x.estados.MIEL)
