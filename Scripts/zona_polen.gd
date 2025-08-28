@@ -8,19 +8,26 @@ extends Area2D
 @export var c_polen_max := 100
 @export var c_gen_polen_max := 10
 @export var c_gen_polen_min := 5
-@export var max_polen_dar := 10
-@export var min_polen_dar := 5
+
 
 # variables nectar
 @export var nectar_max := 200
 @export var gen_nectar_max := 15
 @export var gen_nectar_min := 5
-@export var max_nectar_dar := 25
-@export var min_nectar_dar := 5
 
-var c_polen := 0
-var nectar := 0
+var c_polen := 0: set = _add_c_polen_actual, get = _get_c_polen_actual
 
+var nectar := 0: set = _add_nectar_actual, get = _get_nectar_actual
+
+func _add_c_polen_actual(valor):
+	c_polen = min(c_polen + valor, c_polen_max)
+func _get_c_polen_actual():
+		return c_polen
+
+func _add_nectar_actual(valor):
+	nectar = min(nectar + valor, nectar_max)
+func _get_nectar_actual():
+		return nectar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,17 +52,3 @@ func _on_timer_polen_gen_timeout() -> void:
 		nectar += gen_nectar
 	elif nectar + gen_nectar > nectar_max:
 		nectar = nectar_max
-
-
-func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
-	if area.c_nodos < 3:
-		var polen_dar = randi_range(min_polen_dar,max_polen_dar)
-		if polen_dar >= c_polen:
-			polen_dar = c_polen
-		c_polen -= polen_dar
-		area._add_c_polen_actual(polen_dar)
-		var nectar_dar = randi_range(min_nectar_dar,max_nectar_dar)
-		if nectar_dar >= nectar:
-			nectar_dar = nectar
-		nectar -= nectar_dar
-		area._add_nectar_actual(nectar_dar)

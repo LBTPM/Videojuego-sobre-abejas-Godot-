@@ -14,6 +14,12 @@ extends Area2D
 @export var polin_time := 3
 @export var prob_min_volver := 50
 
+#Recoger
+@export var max_nectar_dar := 25
+@export var min_nectar_dar := 5
+@export var max_polen_dar := 10
+@export var min_polen_dar := 5
+
 enum Estados {PANAL = 0,VOLAR = 1,POLIN = 2}
 
 # Variables movimiento
@@ -104,7 +110,16 @@ func probabilidad_volver():
 
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area.get_collision_layer() == 4 and c_nodos < 3:
+		#Recogiendo polen
 		estado_actual = Estados.POLIN 
+		var polen_rec = randi_range(min_polen_dar,max_polen_dar)
+		var nectar_rec = randi_range(min_nectar_dar,max_nectar_dar)
+		polen_rec = min(polen_rec, area._get_c_polen_actual())
+		nectar_rec = min(nectar_rec, area._get_nectar_actual())
+		_add_c_polen_actual(polen_rec)
+		_add_nectar_actual(nectar_rec)
+		area._add_c_polen_actual(-polen_rec)
+		area._add_nectar_actual(-nectar_rec)
 	elif area.get_collision_layer() == 1 and area.is_ancestor_of(self):
 		visible = false
 		animated_sprite_2d.play("default")

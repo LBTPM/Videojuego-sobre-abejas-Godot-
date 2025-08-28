@@ -6,7 +6,7 @@ const ABEJA = preload("res://Escenas/abeja.tscn")
 
 @export var cant_nectar_para_miel: int = 50
 @export var tiempo_miel: int = 20
-@export var ml_miel_celda: int = 2
+@export var ml_miel_celda: int = 1
 @export var max_celdas := 10
 
 # Posicion flores
