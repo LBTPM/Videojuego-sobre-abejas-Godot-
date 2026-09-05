@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=4 uid="uid://drcl4e0uw1eg6"]
+[gd_scene load_steps=10 format=4 uid="uid://drcl4e0uw1eg6"]
 
-[ext_resource type="PackedScene" uid="uid://cpr8i687m6f3" path="res://Escenas/Panal.tscn" id="1_0bm41"]
 [ext_resource type="Texture2D" uid="uid://yr853ypmnu7q" path="res://Assets/Sprites_abejas/cielo.png" id="1_5g6uq"]
 [ext_resource type="Script" uid="uid://5l8h4peg82lp" path="res://Scripts/game.gd" id="1_ijxpu"]
 [ext_resource type="Texture2D" uid="uid://bg5q2xnrc63lu" path="res://Assets/Sprites_abejas/Tileset_flores.png" id="2_obr3f"]
@@ -34,8 +33,10 @@ sources/0 = SubResource("TileSetAtlasSource_3418m")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_ijxpu")
+pos_panales = Array[Vector2]([Vector2(12, 48), Vector2(36, 48), Vector2(76, 48), Vector2(100, 48)])
 
 [node name="GUI" parent="." instance=ExtResource("5_o5eqp")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(56, 31)
@@ -52,6 +53,7 @@ tile_map_data = PackedByteArray("AAANAAcAAAAAAAEAAAAMAAcAAAABAAEAAAALAAcAAAABAAE
 tile_set = SubResource("TileSet_5g6uq")
 
 [node name="Zonas_polen" type="Node2D" parent="."]
+position = Vector2(0.5, 0.5)
 
 [node name="Zona_polen8" parent="Zonas_polen" instance=ExtResource("3_3418m")]
 position = Vector2(110, 51)
@@ -112,6 +114,3 @@ position = Vector2(94, 52)
 
 [node name="Zona_polen7" parent="Zonas_polen" instance=ExtResource("3_3418m")]
 position = Vector2(106, 51)
-
-[node name="Panal" parent="." instance=ExtResource("1_0bm41")]
-position = Vector2(12, 48)

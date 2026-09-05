@@ -25,11 +25,10 @@ func _on_button_pressed() -> void:
 		var sig_nivel = obj_nivel.instantiate()
 		nivel_actual += 1
 		
-		gui_control._add_miel_total(-coste)
+		gui_control.gastar_miel(coste)
 		
 		sig_nivel.position = button.position
 		add_child(sig_nivel)
-		print(str(nivel_actual))
 		sig_nivel.set_text(str(nivel_actual))
 		button.position.x += 60
 		coste += 10
