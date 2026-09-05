@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://drcl4e0uw1eg6"]
+[gd_scene load_steps=9 format=4 uid="uid://drcl4e0uw1eg6"]
 
 [ext_resource type="Texture2D" uid="uid://yr853ypmnu7q" path="res://Assets/Sprites_abejas/cielo.png" id="1_5g6uq"]
 [ext_resource type="Script" uid="uid://5l8h4peg82lp" path="res://Scripts/game.gd" id="1_ijxpu"]
 [ext_resource type="Texture2D" uid="uid://bg5q2xnrc63lu" path="res://Assets/Sprites_abejas/Tileset_flores.png" id="2_obr3f"]
 [ext_resource type="PackedScene" uid="uid://co2t2qiryyn62" path="res://Escenas/zona_polen.tscn" id="3_3418m"]
-[ext_resource type="PackedScene" uid="uid://bql7imkqas2uj" path="res://Escenas/gui.tscn" id="5_o5eqp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5eqp"]
 texture = ExtResource("1_5g6uq")
@@ -34,9 +33,6 @@ sources/0 = SubResource("TileSetAtlasSource_3418m")
 [node name="Game" type="Node"]
 script = ExtResource("1_ijxpu")
 pos_panales = Array[Vector2]([Vector2(12, 48), Vector2(36, 48), Vector2(76, 48), Vector2(100, 48)])
-
-[node name="GUI" parent="." instance=ExtResource("5_o5eqp")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(56, 31)
