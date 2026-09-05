@@ -1,7 +1,7 @@
 extends Area2D
 
 #Temporizador para producir miel
-@onready var timer_gen: Timer = $timer_polen_gen
+@onready var timer_gen: Timer = $timer_gen
 
 #Tiempo que tarda en generar
 @export var time_gen := 5

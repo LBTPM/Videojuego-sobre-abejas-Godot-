@@ -1,10 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpr8i687m6f3"]
+[gd_scene load_steps=8 format=3 uid="uid://cpr8i687m6f3"]
 
 [ext_resource type="Script" uid="uid://dsfh6ice5jjnp" path="res://Scripts/panal.gd" id="1_mkwf8"]
 [ext_resource type="Texture2D" uid="uid://d3fpi4hqcpgv2" path="res://Assets/Sprites_abejas/Panal1.png" id="1_v7pug"]
+[ext_resource type="PackedScene" uid="uid://bjua42lc24g56" path="res://Escenas/gui_panal.tscn" id="3_h24t6"]
+[ext_resource type="Texture2D" uid="uid://do0ptqiu7vbr6" path="res://Assets/Sprites_abejas/CeldasAbejas.png" id="4_kuuo7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkwf8"]
 size = Vector2(2, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hhmnj"]
+texture = ExtResource("4_kuuo7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_gclw7"]
+tile_shape = 3
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_hhmnj")
 
 [node name="Panal" type="Area2D"]
 collision_mask = 2
@@ -20,5 +37,19 @@ shape = SubResource("RectangleShape2D_mkwf8")
 
 [node name="Timer_miel" type="Timer" parent="."]
 
+[node name="GUI_panal" parent="." instance=ExtResource("3_h24t6")]
+
+[node name="Celdas" type="TileMapLayer" parent="GUI_panal"]
+position = Vector2(538, 305)
+scale = Vector2(2, 2)
+tile_set = SubResource("TileSet_gclw7")
+
+[node name="GUI_Boton" type="Button" parent="."]
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+theme_type_variation = &"FlatButton"
+
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
 [connection signal="timeout" from="Timer_miel" to="." method="_on_timer_miel_timeout"]
+[connection signal="button_up" from="GUI_Boton" to="." method="_on_gui_boton_button_up"]

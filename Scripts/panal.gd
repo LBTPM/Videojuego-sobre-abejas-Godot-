@@ -4,6 +4,7 @@ extends Area2D
 #Objetos con los que el panal va a trabajar
 const ABEJA = preload("res://Escenas/abeja.tscn")
 @onready var timer_miel: Timer = $Timer_miel #Timer para la producción de miel
+@onready var gui_panal: CanvasLayer = $GUI_panal
 
 #Variables visibles
 @export var cant_nectar_para_miel: int = 50 #Cantidad necesaria de nectar para producir miel
@@ -44,10 +45,7 @@ func _ready() -> void:
 		añadir_celda()
 
 func _process(delta: float) -> void:
-	if existe_miel_proc(): #Le dice a la gui si se esta produciendo miel
-		game_control.gen_miel = true
-	else:
-		game_control.gen_miel = false
+	pass
 		
 func guardar_polen(valor:int): #Guarda el polen en las celdas si hay hueco
 	for x in celdas: #Metemos el polen primero en las que tienen estado polen y no estan llenas
@@ -140,3 +138,7 @@ func _on_timer_miel_timeout() -> void: #Al terminar el temporizador de miel se h
 		if x.estado == x.estados.NECTAR and x._get_cantidad() == x.almacen_max:
 			x.cambiar_tipo(x.estados.MIEL)
 			x.mostrar()
+
+
+func _on_gui_boton_button_up() -> void:
+	gui_panal.visible = true
