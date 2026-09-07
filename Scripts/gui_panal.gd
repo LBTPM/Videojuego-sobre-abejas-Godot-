@@ -1,20 +1,20 @@
 extends CanvasLayer
 
-@onready var celdas: TileMapLayer = $Celdas
+@onready var celdas: TileMapLayer = $"Panel mejoras panal/HBoxContainer/Panel/Celdas"
+@onready var anadir_abeja: Button = $"Panel mejoras panal/HBoxContainer/Panel/Panel_miel/Añadir Abeja"
+@onready var precio_abeja: Panel = $"Panel mejoras panal/HBoxContainer/Panel/Precio abeja"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	celdas.set_cell(Vector2i(0,0),1,Vector2i(0,0),0)
-	for x in range(1,7):
-		celdas.set_cell(Vector2i(x,0),1,Vector2i(1,0),0)
-		celdas.set_cell(Vector2i(-x,0),1,Vector2i(2,0),0)
-		celdas.set_cell(Vector2i(0,x),1,Vector2i(0,1),0)
-		celdas.set_cell(Vector2i(0,-x),1,Vector2i(1,1),0)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if anadir_abeja.is_hovered():
+		precio_abeja.visible = true
+	else:
+		precio_abeja.visible = false
 
 func _on_cerrar_panal_button_up() -> void:
 	visible = false

@@ -1,11 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjua42lc24g56"]
+[gd_scene load_steps=11 format=4 uid="uid://bjua42lc24g56"]
 
 [ext_resource type="Script" uid="uid://cga8wock84fkk" path="res://Scripts/gui_panal.gd" id="1_t1nna"]
 [ext_resource type="StyleBox" uid="uid://g1pfv38qgy1a" path="res://Estilos/Panel.tres" id="2_3nirh"]
 [ext_resource type="FontFile" uid="uid://dnmum5aokx7lu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_u10w4"]
 [ext_resource type="StyleBox" uid="uid://c6mnesjv2cqky" path="res://Estilos/Boton_hover.tres" id="4_xaimt"]
 [ext_resource type="StyleBox" uid="uid://cmqd0ltm3wqnr" path="res://Estilos/Boton_presion.tres" id="5_ossta"]
+[ext_resource type="Texture2D" uid="uid://c4bwb7atd57ke" path="res://Assets/Sprites_abejas/abeja.png" id="5_u10w4"]
 [ext_resource type="StyleBox" uid="uid://52ooho3hprj1" path="res://Estilos/Paneles_cool.tres" id="6_2mpp3"]
+[ext_resource type="Texture2D" uid="uid://do0ptqiu7vbr6" path="res://Assets/Sprites_abejas/CeldasAbejas.png" id="7_3nirh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u10w4"]
+texture = ExtResource("7_3nirh")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xaimt"]
+tile_shape = 3
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_u10w4")
 
 [node name="GUI_panal" type="CanvasLayer"]
 script = ExtResource("1_t1nna")
@@ -17,7 +34,79 @@ offset_right = 1141.0
 offset_bottom = 632.0
 theme_override_styles/panel = ExtResource("2_3nirh")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel mejoras panal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel mejoras panal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="Panel" type="Panel" parent="Panel mejoras panal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("2_3nirh")
+
+[node name="Celdas" type="TileMapLayer" parent="Panel mejoras panal/HBoxContainer/Panel"]
+position = Vector2(378, 300)
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAP//AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQABAAAAAAABAP//AQABAAAAAAABAP7/AQABAAAAAAAAAP7/AQABAAAAAAD///7/AQABAAAAAAD+////AQABAAAAAAD+/wAAAQABAAAAAAD+/wEAAQABAAAAAAD//wIAAQABAAAAAAAAAAIAAQABAAAAAAABAAIAAQABAAAAAAABAAEAAQABAAAAAAABAAMAAQACAAAAAAACAAQAAQACAAAAAAACAAMAAQACAAAAAAADAAIAAQACAAAAAAACAAEAAQACAAAAAAADAAEAAQACAAAAAAADAAAAAQACAAAAAAACAAIAAQACAAAAAAAEAAAAAQACAAAAAAADAP//AQACAAAAAAACAP//AQACAAAAAAADAP7/AQACAAAAAAACAP7/AQACAAAAAAACAP3/AQACAAAAAAABAP3/AQACAAAAAAACAPz/AQACAAAAAAABAPz/AQACAAAAAAAAAPz/AQACAAAAAAAAAP3/AQACAAAAAAD///3/AQACAAAAAAD///z/AQACAAAAAAD+//z/AQACAAAAAAD+//3/AQACAAAAAAD9//3/AQACAAAAAAD+//7/AQACAAAAAAD9//7/AQACAAAAAAD9////AQACAAAAAAD8////AQACAAAAAAD9/wAAAQACAAAAAAD8/wAAAQACAAAAAAD8/wEAAQACAAAAAAD9/wEAAQACAAAAAAD9/wIAAQACAAAAAAD+/wIAAQACAAAAAAD9/wMAAQACAAAAAAD+/wMAAQACAAAAAAD+/wQAAQACAAAAAAD//wQAAQACAAAAAAD//wMAAQACAAAAAAAAAAQAAQACAAAAAAAAAAMAAQACAAAAAAABAAQAAQACAAAAAAAFAAAAAQAAAAEAAAAGAAAAAQAAAAEAAAAFAP//AQAAAAEAAAAEAP//AQAAAAEAAAAFAP7/AQAAAAEAAAAEAP7/AQAAAAEAAAAEAP3/AQAAAAEAAAADAP3/AQAAAAEAAAAEAPz/AQAAAAEAAAADAPz/AQAAAAEAAAADAPv/AQAAAAEAAAACAPv/AQAAAAEAAAADAPr/AQAAAAEAAAACAPr/AQAAAAEAAAABAPv/AQAAAAEAAAABAPr/AQAAAAEAAAAAAPv/AQAAAAEAAAAAAPr/AQAAAAEAAAD///v/AQAAAAEAAAD///r/AQAAAAEAAAD+//v/AQAAAAEAAAD+//r/AQAAAAEAAAD9//v/AQAAAAEAAAD9//z/AQAAAAEAAAD8//3/AQAAAAEAAAD8//7/AQAAAAEAAAD7////AQAAAAEAAAD7//7/AQAAAAEAAAD7//3/AQAAAAEAAAD8//z/AQAAAAEAAAD8//v/AQAAAAEAAAD9//r/AQAAAAEAAAD6////AQAAAAEAAAD7/wAAAQAAAAEAAAD6/wAAAQAAAAEAAAD6/wEAAQAAAAEAAAD7/wEAAQAAAAEAAAD7/wIAAQAAAAEAAAD8/wIAAQAAAAEAAAD7/wMAAQAAAAEAAAD8/wMAAQAAAAEAAAD8/wQAAQAAAAEAAAD9/wQAAQAAAAEAAAD8/wUAAQAAAAEAAAD9/wUAAQAAAAEAAAD9/wYAAQAAAAEAAAD+/wYAAQAAAAEAAAD+/wUAAQAAAAEAAAD//wUAAQAAAAEAAAD//wYAAQAAAAEAAAAAAAYAAQAAAAEAAAAAAAUAAQAAAAEAAAABAAYAAQAAAAEAAAABAAUAAQAAAAEAAAACAAUAAQAAAAEAAAADAAQAAQAAAAEAAAADAAMAAQAAAAEAAAAEAAIAAQAAAAEAAAAEAAEAAQAAAAEAAAAFAAEAAQAAAAEAAAAFAAIAAQAAAAEAAAAEAAMAAQAAAAEAAAAEAAQAAQAAAAEAAAADAAUAAQAAAAEAAAACAAYAAQAAAAEAAAADAAYAAQAAAAEAAAAHAAAAAQABAAEAAAA=")
+tile_set = SubResource("TileSet_xaimt")
+
+[node name="Panel_miel" type="Panel" parent="Panel mejoras panal/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.00643087
+anchor_right = 0.171665
+anchor_bottom = 0.00321543
+offset_left = 20.0
+offset_top = 23.0
+offset_right = -0.190002
+offset_bottom = 73.0
+theme_override_styles/panel = ExtResource("6_2mpp3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Añadir Abeja" type="Button" parent="Panel mejoras panal/HBoxContainer/Panel/Panel_miel"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 3.0
+offset_right = 115.0
+offset_bottom = 53.0
+theme_override_fonts/font = ExtResource("3_u10w4")
+theme_override_styles/hover = ExtResource("4_xaimt")
+theme_override_styles/pressed = ExtResource("5_ossta")
+theme_override_styles/normal = ExtResource("6_2mpp3")
+text = "+"
+
+[node name="Imagen" type="TextureRect" parent="Panel mejoras panal/HBoxContainer/Panel/Panel_miel"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 50.0
+offset_bottom = 48.0
+texture = ExtResource("5_u10w4")
+
+[node name="Precio abeja" type="Panel" parent="Panel mejoras panal/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.121
+anchor_right = 0.025
+anchor_bottom = 0.121
+offset_left = -0.125
+offset_top = 5.738
+offset_right = 126.875
+offset_bottom = 82.738
+theme_override_styles/panel = ExtResource("2_3nirh")
+
 [node name="Cerrar panal" type="Button" parent="Panel mejoras panal"]
+layout_mode = 0
 offset_left = 1070.0
 offset_top = 8.0
 offset_right = 1122.0
