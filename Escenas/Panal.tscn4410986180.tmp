@@ -10,14 +10,6 @@ size = Vector2(2, 1)
 [node name="Panal" type="Area2D"]
 collision_mask = 2
 script = ExtResource("1_mkwf8")
-cant_nectar_para_miel = null
-maximo_polen_celda = null
-tiempo_miel = null
-ml_miel_celda = null
-max_celdas = null
-max_abejas = null
-celdas_ini = null
-cant_abj_ini = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)

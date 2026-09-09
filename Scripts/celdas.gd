@@ -10,6 +10,8 @@ var almacen_polen := 100 #Cantidad máxima de polen que puede guardar
 var almacen_max := almacen_polen
 var cantidad := 0 : get = _get_cantidad, set = _set_cantidad
 
+var coordenadas = Vector2(0,0)
+
 func _get_cantidad(): #Devuelve la cantidad que tiene guardada
 	return cantidad
 	
@@ -29,7 +31,8 @@ func comprobar_miel() -> bool: #Empieza a hacer miel si la celda tiene suficient
 		mielear = true
 	return mielear
 
-func iniciar(alma_nectar:= 50, alma_polen:= 100): #???
+func iniciar(coords: Vector2, alma_nectar:= 50, alma_polen:= 100): #???
+	coordenadas = coords
 	almacen_nectar = alma_nectar
 	almacen_polen = alma_polen
 	

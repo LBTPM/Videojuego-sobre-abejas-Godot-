@@ -13,7 +13,6 @@ const ABEJA = preload("res://Escenas/abeja.tscn")
 @export var ml_miel_celda: int = 1 #Cantidad de miel que se produce en una celda
 @export var max_celdas := 20 #Cantidad maxima de celdas que puede tener el panal
 @export var max_abejas := 10 #Cantidad maxima de abejas que puede tener el panal
-@export var celdas_ini := 10 #Celdas con las que empieza el panal
 @export var cant_abj_ini := 3 #Cantidad de abejas con las que empieza el panal
 # Posicion flores
 var zonas_polen
@@ -41,8 +40,7 @@ func _ready() -> void:
 		añadir_abeja()
 		
 	# Crear celdas
-	for x in celdas_ini:
-		añadir_celda()
+	gui_panal.iniciar()
 
 func _process(delta: float) -> void:
 	pass
@@ -108,10 +106,10 @@ func existe_miel_proc()-> bool: #Devuelve True si alguna de las celdas esta prod
 			existencia = true
 	return existencia
 
-func añadir_celda(): #Añade una celda al panal si no superan la cantidad máxima
+func añadir_celda(coords : Vector2): #Añade una celda al panal si no superan la cantidad máxima
 	if len(celdas) <= max_celdas:
 		var nueva_celda = Celda.new()
-		nueva_celda.iniciar(cant_nectar_para_miel,maximo_polen_celda)
+		nueva_celda.iniciar(coords, cant_nectar_para_miel,maximo_polen_celda)
 		celdas.append(nueva_celda)
 		
 func añadir_abeja(): #Añade una nueva abeja al panal
@@ -123,6 +121,8 @@ func añadir_abeja(): #Añade una nueva abeja al panal
 		add_child(abeja)
 		cant_abj += 1
 
+
+#Funciones de señales
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	
 	if self.is_ancestor_of(area): #Cuando la entrada al panal toca una abeja del panal guardamos su polen
@@ -130,7 +130,6 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 		guardar_nectar(area._get_nectar())
 		area._set_polen(0)
 		area._set_nectar(0)
-
 
 
 func _on_timer_miel_timeout() -> void: #Al terminar el temporizador de miel se ha producido miel
@@ -142,3 +141,7 @@ func _on_timer_miel_timeout() -> void: #Al terminar el temporizador de miel se h
 
 func _on_gui_boton_button_up() -> void:
 	gui_panal.visible = true
+
+
+func _on_gui_panal_celda_creada(coordenadas: Vector2) -> void:
+	añadir_celda(coordenadas)
