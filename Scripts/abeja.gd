@@ -4,7 +4,6 @@ extends Area2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D #Su Sprite animado
 @onready var animation: AnimationPlayer = $AnimationPlayer #Controlador de animaciones
 @onready var timer_polin: Timer = $timer_polin #Temporizador para el tiempo que dura una polinización
-
 @onready var timer_panal: Timer = $timer_panal #Temporizador para tiempo en el panal
 
 	#Variables vuelo
@@ -16,6 +15,7 @@ var tol_final: float = 0.1 #Tolerancia de llegada al destino (si no da problemas
 
 	#Variables polinización
 @export var polin_time := 3#Tiempo que tarda en polinizar
+@export var panal_time := 3#Tiempo que tarda en polinizar
 @export var max_nectar_dar := 25 #Maximo de nectar que puede recoger
 @export var min_nectar_dar := 5 #Minimo =
 @export var max_polen_dar := 10 #Maximo de polen que puede recoger
@@ -32,7 +32,7 @@ var dir #Dirección a la que se dirige (se calcula como destino - posicion)
 var pos_polen = [] #Vector de posiciones de las zonas de polen
 var pos_planta_pol #Posición de la zona de polen a la que se dirige
 var pos_panal : Vector2 #Posición de su panal
-var c_nodos := 1 # ?? 
+var c_nodos := 1 # Cantidad de nodos que visita antes de volver
 var volver : bool = false #Booleano que indica si tiene que volver al panal
 
 	#Variables polen
@@ -68,7 +68,7 @@ func _ready() -> void:
 	dir = destino - position
 	pos_panal = get_parent().position
 	timer_polin.wait_time = polin_time
-	timer_panal.wait_time = 10
+	timer_panal.wait_time = panal_time
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

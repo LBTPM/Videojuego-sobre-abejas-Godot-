@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://brq8wax12hb0e"]
+
+[ext_resource type="Script" uid="uid://dd7kgjs587ake" path="res://Scripts/celda.gd" id="1_xcwkc"]
+
+[node name="Celda" type="Node2D" unique_id=215077871]
+script = ExtResource("1_xcwkc")
+
+[node name="Timer_miel" type="Timer" parent="." unique_id=1603495551]
+
+[connection signal="timeout" from="Timer_miel" to="." method="_on_timer_miel_timeout"]

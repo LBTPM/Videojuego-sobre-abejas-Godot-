@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpr8i687m6f3"]
+[gd_scene format=3 uid="uid://cpr8i687m6f3"]
 
 [ext_resource type="Script" uid="uid://dsfh6ice5jjnp" path="res://Scripts/panal.gd" id="1_mkwf8"]
 [ext_resource type="Texture2D" uid="uid://d3fpi4hqcpgv2" path="res://Assets/Sprites_abejas/Panal1.png" id="1_v7pug"]
@@ -7,37 +7,28 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkwf8"]
 size = Vector2(2, 1)
 
-[node name="Panal" type="Area2D"]
+[node name="Panal" type="Area2D" unique_id=1255237765]
 collision_mask = 2
 script = ExtResource("1_mkwf8")
-cant_nectar_para_miel = null
-maximo_polen_celda = null
-tiempo_miel = null
-ml_miel_celda = null
-max_celdas = null
-max_abejas = null
-celdas_ini = null
-cant_abj_ini = null
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=785705702]
 position = Vector2(0, -4)
 texture = ExtResource("1_v7pug")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2039552976]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_mkwf8")
 
-[node name="Timer_miel" type="Timer" parent="."]
+[node name="GUI_panal" parent="." unique_id=1402150786 instance=ExtResource("3_h24t6")]
+visible = false
 
-[node name="GUI_panal" parent="." instance=ExtResource("3_h24t6")]
-
-[node name="GUI_Boton" type="Button" parent="."]
+[node name="GUI_Boton" type="Button" parent="." unique_id=464045261]
 offset_left = -4.0
 offset_top = -8.0
 offset_right = 4.0
 theme_type_variation = &"FlatButton"
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
-[connection signal="timeout" from="Timer_miel" to="." method="_on_timer_miel_timeout"]
 [connection signal="celda_creada" from="GUI_panal" to="." method="_on_gui_panal_celda_creada"]
+[connection signal="sub_nivel" from="GUI_panal" to="." method="_on_gui_panal_sub_nivel"]
 [connection signal="button_up" from="GUI_Boton" to="." method="_on_gui_boton_button_up"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c31viyiypj41v"]
+[gd_scene format=3 uid="uid://c31viyiypj41v"]
 
 [ext_resource type="Texture2D" uid="uid://2nqmuybh82yq" path="res://Assets/Sprites_abejas/Bee.png" id="1_spl10"]
 [ext_resource type="Script" uid="uid://kfbe4kwvber" path="res://Scripts/abeja.gd" id="1_xnnt1"]
@@ -29,7 +29,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fy2gw")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -46,7 +46,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y5u4i")
 }],
-"loop": true,
+"loop": 1,
 "name": &"volar",
 "speed": 30.0
 }]
@@ -92,30 +92,32 @@ _data = {
 &"RESET": SubResource("Animation_uosor")
 }
 
-[node name="Abeja" type="Area2D"]
+[node name="Abeja" type="Area2D" unique_id=1193551498]
 z_index = 2
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_xnnt1")
-max_vuelo = 5
+min_vuelo = 1
+max_vuelo = 2
+prob_min_volver = 5
+max_nectar_dar = 30
+nectar_max = 20
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1343402731]
 position = Vector2(0, -0.5)
 sprite_frames = SubResource("SpriteFrames_exxdr")
 animation = &"volar"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=226677266]
 shape = SubResource("RectangleShape2D_tyfth")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_uosor")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=957346313]
+libraries/ = SubResource("AnimationLibrary_uosor")
 
-[node name="timer_polin" type="Timer" parent="."]
+[node name="timer_polin" type="Timer" parent="." unique_id=897986616]
 one_shot = true
 
-[node name="timer_panal" type="Timer" parent="."]
+[node name="timer_panal" type="Timer" parent="." unique_id=722756816]
 one_shot = true
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
