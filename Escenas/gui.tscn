@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bql7imkqas2uj"]
+[gd_scene format=3 uid="uid://bql7imkqas2uj"]
 
 [ext_resource type="Texture2D" uid="uid://dbpuk6ofin8lg" path="res://Assets/Sprites_abejas/Polen.png" id="1_han0g"]
 [ext_resource type="Script" uid="uid://iblk56jlgxcq" path="res://Scripts/gui.gd" id="1_u8rov"]
@@ -6,12 +6,8 @@
 [ext_resource type="FontFile" uid="uid://dnmum5aokx7lu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_u8rov"]
 [ext_resource type="FontFile" uid="uid://uwobqwg541w3" path="res://Assets/fonts/PixelOperator8.ttf" id="3_2j4er"]
 [ext_resource type="Texture2D" uid="uid://hgftabnta5yc" path="res://Assets/Sprites_abejas/Miel.png" id="4_1clfd"]
-[ext_resource type="Script" uid="uid://cxt12si4qrm81" path="res://Scripts/anim_miel.gd" id="6_2j4er"]
 [ext_resource type="StyleBox" uid="uid://c6mnesjv2cqky" path="res://Estilos/Boton_hover.tres" id="8_1lo52"]
 [ext_resource type="StyleBox" uid="uid://cmqd0ltm3wqnr" path="res://Estilos/Boton_presion.tres" id="9_er0ys"]
-[ext_resource type="StyleBox" uid="uid://g1pfv38qgy1a" path="res://Estilos/Panel.tres" id="10_er0ys"]
-[ext_resource type="Script" uid="uid://bid8wlykrrw0v" path="res://Scripts/boton_coste.gd" id="12_vvd78"]
-[ext_resource type="PackedScene" uid="uid://cltfocc1ib8xe" path="res://Escenas/Boton_mejoras.tscn" id="12_vwgum"]
 
 [sub_resource type="Animation" id="Animation_u8rov"]
 resource_name = "Generando_Miel"
@@ -50,17 +46,17 @@ _data = {
 &"RESET": SubResource("Animation_2j4er")
 }
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" unique_id=794330927]
 script = ExtResource("1_u8rov")
 
-[node name="Panel_polen" type="Panel" parent="."]
+[node name="Panel_polen" type="Panel" parent="." unique_id=788798112]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 210.0
+offset_right = 225.0
 offset_bottom = 60.0
 theme_override_styles/panel = ExtResource("2_1clfd")
 
-[node name="Imagen" type="TextureRect" parent="Panel_polen"]
+[node name="Imagen" type="TextureRect" parent="Panel_polen" unique_id=117505835]
 layout_mode = 1
 offset_left = 5.0
 offset_top = 5.0
@@ -68,7 +64,7 @@ offset_right = 45.0
 offset_bottom = 45.0
 texture = ExtResource("1_han0g")
 
-[node name="Nombre" type="Label" parent="Panel_polen"]
+[node name="Nombre" type="Label" parent="Panel_polen" unique_id=969111281]
 layout_mode = 1
 offset_left = 52.0
 offset_top = 5.0
@@ -78,7 +74,7 @@ theme_override_fonts/font = ExtResource("2_u8rov")
 text = "Polen:"
 vertical_alignment = 1
 
-[node name="Cantidad" type="Label" parent="Panel_polen"]
+[node name="Cantidad" type="Label" parent="Panel_polen" unique_id=281514245]
 layout_mode = 1
 offset_left = 52.0
 offset_top = 25.0
@@ -88,43 +84,36 @@ theme_override_fonts/font = ExtResource("3_2j4er")
 text = "0"
 vertical_alignment = 1
 
-[node name="Panel_miel" type="Panel" parent="."]
+[node name="Panel_miel" type="Panel" parent="." unique_id=1289715805]
 offset_left = 10.0
 offset_top = 69.0
-offset_right = 210.0
+offset_right = 225.0
 offset_bottom = 119.0
 theme_override_styles/panel = ExtResource("2_1clfd")
 
-[node name="Imagen" type="TextureRect" parent="Panel_miel"]
+[node name="Imagen" type="TextureRect" parent="Panel_miel" unique_id=1919926336]
 layout_mode = 1
 offset_left = 6.0
 offset_top = 5.0
 offset_right = 46.0
 offset_bottom = 45.0
 texture = ExtResource("4_1clfd")
-script = ExtResource("6_2j4er")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel_miel/Imagen"]
-libraries = {
-&"": SubResource("AnimationLibrary_1clfd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel_miel/Imagen" unique_id=1076820891]
+libraries/ = SubResource("AnimationLibrary_1clfd")
 
-[node name="Nombre" type="Label" parent="Panel_miel"]
+[node name="Nombre" type="Label" parent="Panel_miel" unique_id=1413245881]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.205
-anchor_top = -0.2
-anchor_right = -1.205
-anchor_bottom = -0.2
-offset_left = 293.0
-offset_top = 15.0
-offset_right = 381.0
-offset_bottom = 38.0
+offset_left = 54.0
+offset_top = 5.0
+offset_right = 142.0
+offset_bottom = 28.0
 theme_override_fonts/font = ExtResource("2_u8rov")
 text = "Miel:"
 vertical_alignment = 1
 
-[node name="Cantidad" type="Label" parent="Panel_miel"]
+[node name="Cantidad" type="Label" parent="Panel_miel" unique_id=1203973726]
 layout_mode = 1
 offset_left = 52.0
 offset_top = 25.0
@@ -134,238 +123,53 @@ theme_override_fonts/font = ExtResource("3_2j4er")
 text = "0"
 vertical_alignment = 1
 
-[node name="Panel_nectar" type="Panel" parent="Panel_miel"]
-visible = false
-layout_mode = 0
-offset_left = 52.0
-offset_top = 54.0
-offset_right = 200.0
-offset_bottom = 91.0
+[node name="Panel_nutrientes" type="Panel" parent="." unique_id=251240739]
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 128.0
+offset_right = 226.0
+offset_bottom = 178.0
 theme_override_styles/panel = ExtResource("2_1clfd")
 
-[node name="Imagen" type="TextureRect" parent="Panel_miel/Panel_nectar"]
-modulate = Color(0.576471, 1, 1, 1)
+[node name="Imagen" type="TextureRect" parent="Panel_nutrientes" unique_id=1020050185]
 layout_mode = 1
-offset_left = 5.0
+offset_left = 6.0
 offset_top = 5.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 46.0
+offset_bottom = 45.0
 texture = ExtResource("4_1clfd")
 
-[node name="Nombre" type="Label" parent="Panel_miel/Panel_nectar"]
+[node name="Nombre" type="Label" parent="Panel_nutrientes" unique_id=1816813378]
 layout_mode = 1
-offset_left = 37.0
-offset_top = 4.0
-offset_right = 107.0
-offset_bottom = 20.0
+anchors_preset = -1
+offset_left = 48.000015
+offset_top = 5.0
+offset_right = 212.00002
+offset_bottom = 28.0
 theme_override_fonts/font = ExtResource("2_u8rov")
-theme_override_font_sizes/font_size = 8
-text = "Néctar:"
+text = "Nutrientes:"
 vertical_alignment = 1
 
-[node name="Cantidad" type="Label" parent="Panel_miel/Panel_nectar"]
+[node name="Cantidad" type="Label" parent="Panel_nutrientes" unique_id=710152603]
 layout_mode = 1
-offset_left = 37.0
-offset_top = 16.0
-offset_right = 143.0
-offset_bottom = 36.0
+offset_left = 52.0
+offset_top = 25.0
+offset_right = 193.0
+offset_bottom = 46.0
 theme_override_fonts/font = ExtResource("3_2j4er")
 text = "0"
 vertical_alignment = 1
 
-[node name="Mejoras panal" type="Button" parent="."]
-offset_left = 218.0
-offset_top = 10.0
-offset_right = 338.0
-offset_bottom = 60.0
+[node name="Mejoras plantas" type="Button" parent="." unique_id=1622105113]
+offset_left = 238.0
+offset_top = 11.0
+offset_right = 358.0
+offset_bottom = 61.0
 theme_override_fonts/font = ExtResource("2_u8rov")
-theme_override_styles/hover = ExtResource("8_1lo52")
-theme_override_styles/pressed = ExtResource("9_er0ys")
 theme_override_styles/normal = ExtResource("2_1clfd")
+theme_override_styles/pressed = ExtResource("9_er0ys")
+theme_override_styles/hover = ExtResource("8_1lo52")
 toggle_mode = true
-text = "Panales"
+text = "Plantas"
 
-[node name="Mejoras flor" type="Button" parent="."]
-offset_left = 218.0
-offset_top = 69.0
-offset_right = 338.0
-offset_bottom = 119.0
-theme_override_fonts/font = ExtResource("2_u8rov")
-theme_override_styles/hover = ExtResource("8_1lo52")
-theme_override_styles/pressed = ExtResource("9_er0ys")
-theme_override_styles/normal = ExtResource("2_1clfd")
-toggle_mode = true
-text = "Flores"
-
-[node name="Mejoras abeja" type="Button" parent="."]
-offset_left = 218.0
-offset_top = 128.0
-offset_right = 338.0
-offset_bottom = 178.0
-theme_override_fonts/font = ExtResource("2_u8rov")
-theme_override_styles/hover = ExtResource("8_1lo52")
-theme_override_styles/pressed = ExtResource("9_er0ys")
-theme_override_styles/normal = ExtResource("2_1clfd")
-toggle_mode = true
-text = "Abejas"
-
-[node name="Panel mejoras panal" type="Panel" parent="."]
-visible = false
-offset_left = 348.0
-offset_top = 10.0
-offset_right = 1141.0
-offset_bottom = 293.0
-theme_override_styles/panel = ExtResource("10_er0ys")
-
-[node name="Boton_mejoras" parent="Panel mejoras panal" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 1
-grow_vertical = 1
-texto = "Panal 1"
-
-[node name="Boton_añadir_panal" type="Button" parent="Panel mejoras panal"]
-top_level = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.302
-anchor_top = 0.015
-anchor_right = 0.302
-anchor_bottom = 0.015
-offset_left = 10.096
-offset_top = 64.28
-offset_right = 60.096
-offset_bottom = 114.28
-theme_override_fonts/font = ExtResource("2_u8rov")
-theme_override_styles/hover = ExtResource("8_1lo52")
-theme_override_styles/pressed = ExtResource("9_er0ys")
-theme_override_styles/normal = ExtResource("2_1clfd")
-text = "+"
-script = ExtResource("12_vvd78")
-
-[node name="Panel" type="Panel" parent="Panel mejoras panal/Boton_añadir_panal"]
-layout_mode = 0
-offset_left = 50.0
-offset_right = 200.0
-offset_bottom = 50.0
-theme_override_styles/panel = ExtResource("2_1clfd")
-
-[node name="Coste" type="Label" parent="Panel mejoras panal/Boton_añadir_panal/Panel"]
-layout_mode = 0
-offset_right = 100.0
-offset_bottom = 50.0
-theme_override_fonts/font = ExtResource("2_u8rov")
-text = "X"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Panel mejoras panal/Boton_añadir_panal/Panel"]
-layout_mode = 0
-offset_left = 105.0
-offset_top = 5.0
-offset_right = 145.0
-offset_bottom = 45.0
-texture = ExtResource("4_1clfd")
-
-[node name="Panel mejoras flor" type="Panel" parent="."]
-visible = false
-offset_left = 348.0
-offset_top = 10.0
-offset_right = 1141.0
-offset_bottom = 293.0
-theme_override_styles/panel = ExtResource("10_er0ys")
-
-[node name="Mejora_generado" parent="Panel mejoras flor" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 1
-grow_vertical = 1
-coste = 5
-texto = "Generar"
-
-[node name="Mejora_capacidad" parent="Panel mejoras flor" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 70.0
-offset_right = 10.0
-offset_bottom = 70.0
-grow_horizontal = 1
-grow_vertical = 1
-coste = 10
-texto = "Capacidad"
-
-[node name="Mejora_cantidad" parent="Panel mejoras flor" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 133.0
-offset_right = -783.0
-offset_bottom = -150.0
-coste = 20
-texto = "Cantidad"
-
-[node name="Panel mejoras abeja" type="Panel" parent="."]
-visible = false
-offset_left = 348.0
-offset_top = 10.0
-offset_right = 1141.0
-offset_bottom = 293.0
-theme_override_styles/panel = ExtResource("10_er0ys")
-
-[node name="Mejora_velocidad" parent="Panel mejoras abeja" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 1
-grow_vertical = 1
-texto = "Velocidad"
-
-[node name="Mejora_capacidad" parent="Panel mejoras abeja" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 70.0
-offset_right = 10.0
-offset_bottom = 70.0
-grow_horizontal = 1
-grow_vertical = 1
-texto = "Capacidad"
-
-[node name="Mejora_extraccion" parent="Panel mejoras abeja" instance=ExtResource("12_vwgum")]
-layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 10.0
-offset_top = 129.0
-offset_right = 10.0
-offset_bottom = 129.0
-grow_horizontal = 1
-grow_vertical = 1
-texto = "Extracción"
-
-[connection signal="toggled" from="Mejoras panal" to="." method="_on_mejoras_panal_toggled"]
-[connection signal="toggled" from="Mejoras flor" to="." method="_on_mejoras_flor_toggled"]
-[connection signal="toggled" from="Mejoras abeja" to="." method="_on_mejoras_abeja_toggled"]
-[connection signal="pressed" from="Panel mejoras panal/Boton_añadir_panal" to="." method="_on_boton_añadir_panal_pressed"]
+[connection signal="toggled" from="Mejoras plantas" to="." method="_on_mejoras_abeja_toggled"]

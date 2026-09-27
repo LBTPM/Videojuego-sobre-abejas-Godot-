@@ -21,6 +21,8 @@ config/icon="res://icon.svg"
 
 [display]
 
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://cdkut18fdv155"
 
 [rendering]

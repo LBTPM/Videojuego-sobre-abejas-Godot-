@@ -1,9 +1,11 @@
 extends Node2D
 
 @onready var timer_miel: Timer = $Timer_miel
+@onready var timer_bebe: Timer = $Timer_bebe
 
 
 signal cambio_celda(coords, estado)
+signal nueva_abeja
 
 #Contenidos que puede tener la celda
 enum estados {VACIO,POLEN,NECTAR,MIEL,BEBE}
@@ -34,14 +36,14 @@ func comprobar_miel(): #Empieza a hacer miel si la celda tiene suficiente nectar
 	if estado == estados.NECTAR and cantidad == almacen_max and timer_miel.is_stopped():
 		timer_miel.start()
 		
-
-
-func iniciar(coords: Vector2, alma_nectar:= 50, alma_polen:= 100, alma_miel:= 100, t_miel = 10):
+func iniciar(coords: Vector2, alma_nectar:= 50, alma_polen:= 100, alma_miel:= 100, t_miel := 10, t_bebe := 30):
 	coordenadas = coords
 	almacen_nectar = alma_nectar
 	almacen_polen = alma_polen
 	timer_miel.wait_time = t_miel
 	timer_miel.one_shot = true
+	timer_bebe.wait_time = t_bebe
+	timer_bebe.one_shot = true
 	
 	estado = estados.VACIO
 	
@@ -61,6 +63,7 @@ func cambiar_estado(tipo): #Cambia entre los estados, faltan cosas
 			_set_cantidad(almacen_max)
 		estados.BEBE:
 			estado = estados.BEBE
+			timer_bebe.start()
 			_set_cantidad(0)
 		_:
 			reiniciar()
@@ -84,7 +87,14 @@ func mostrar():
 			texto = "BEBE"
 	print(texto)
 	print("Almacen: " + str(_get_cantidad()))
-	
+
+func comprobar_vacio():
+	if cantidad == 0:
+		cambiar_estado(estados.VACIO)
+
 func _on_timer_miel_timeout():
 	cambiar_estado(estados.MIEL)
-	
+
+func _on_timer_bebe_timeout() -> void:
+	cambiar_estado(estados.VACIO)
+	nueva_abeja.emit()

@@ -7,4 +7,7 @@ script = ExtResource("1_xcwkc")
 
 [node name="Timer_miel" type="Timer" parent="." unique_id=1603495551]
 
+[node name="Timer_bebe" type="Timer" parent="." unique_id=335151993]
+
 [connection signal="timeout" from="Timer_miel" to="." method="_on_timer_miel_timeout"]
+[connection signal="timeout" from="Timer_bebe" to="." method="_on_timer_bebe_timeout"]

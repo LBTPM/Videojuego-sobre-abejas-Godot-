@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://drcl4e0uw1eg6"]
+[gd_scene format=4 uid="uid://drcl4e0uw1eg6"]
 
 [ext_resource type="Texture2D" uid="uid://yr853ypmnu7q" path="res://Assets/Sprites_abejas/cielo.png" id="1_5g6uq"]
 [ext_resource type="Script" uid="uid://5l8h4peg82lp" path="res://Scripts/game.gd" id="1_ijxpu"]
 [ext_resource type="Texture2D" uid="uid://bg5q2xnrc63lu" path="res://Assets/Sprites_abejas/Tileset_flores.png" id="2_obr3f"]
 [ext_resource type="PackedScene" uid="uid://co2t2qiryyn62" path="res://Escenas/zona_polen.tscn" id="3_3418m"]
+[ext_resource type="PackedScene" uid="uid://bql7imkqas2uj" path="res://Escenas/gui.tscn" id="5_o5eqp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5eqp"]
 texture = ExtResource("1_5g6uq")
@@ -30,83 +31,89 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_3418m")
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" unique_id=274907531]
 script = ExtResource("1_ijxpu")
 pos_panales = Array[Vector2]([Vector2(12, 48), Vector2(36, 48), Vector2(76, 48), Vector2(100, 48)])
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(56, 31)
-zoom = Vector2(10, 10)
+[node name="Tilemap" type="Node2D" parent="." unique_id=217822939]
 
-[node name="Tilemap" type="Node2D" parent="."]
-
-[node name="Background" type="TileMapLayer" parent="Tilemap"]
-tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wEAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAD//wYAAgAAAAAAAAD//wcAAgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAABAP//AgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAACAAYAAgAAAAAAAAACAAcAAgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAYAAgAAAAAAAAADAAcAAgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAYAAgAAAAAAAAAEAAcAAgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAYAAgAAAAAAAAAFAAcAAgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAcAAgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAYAAgAAAAAAAAAIAAcAAgAAAAAAAAAJAP//AgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAcAAgAAAAAAAAAKAP//AgAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAMAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAUAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAcAAgAAAAAAAAALAP//AgAAAAAAAAALAAAAAgAAAAAAAAALAAEAAgAAAAAAAAALAAIAAgAAAAAAAAALAAMAAgAAAAAAAAALAAQAAgAAAAAAAAALAAUAAgAAAAAAAAALAAYAAgAAAAAAAAALAAcAAgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAUAAgAAAAAAAAAMAAYAAgAAAAAAAAAMAAcAAgAAAAAAAAANAP//AgAAAAAAAAANAAAAAgAAAAAAAAANAAEAAgAAAAAAAAANAAIAAgAAAAAAAAANAAMAAgAAAAAAAAANAAQAAgAAAAAAAAANAAUAAgAAAAAAAAANAAYAAgAAAAAAAAANAAcAAgAAAAAAAAAOAP//AgAAAAAAAAAOAAAAAgAAAAAAAAAOAAEAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAMAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAUAAgAAAAAAAAAOAAYAAgAAAAAAAAAOAAcAAgAAAAAAAAA=")
+[node name="Background" type="TileMapLayer" parent="Tilemap" unique_id=1912914233]
+tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD//wIAAgAAAAAAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAD//wUAAgAAAAAAAAD//wYAAgAAAAAAAAD//wcAAgAAAAAAAAAAAP//AgAAAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAUAAgAAAAAAAAAAAAYAAgAAAAAAAAAAAAcAAgAAAAAAAAABAP//AgAAAAAAAAABAAAAAgAAAAAAAAABAAEAAgAAAAAAAAABAAIAAgAAAAAAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAABAAUAAgAAAAAAAAABAAYAAgAAAAAAAAABAAcAAgAAAAAAAAACAP//AgAAAAAAAAACAAAAAgAAAAAAAAACAAEAAgAAAAAAAAACAAIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAAAAAACAAYAAgAAAAAAAAACAAcAAgAAAAAAAAADAP//AgAAAAAAAAADAAAAAgAAAAAAAAADAAEAAgAAAAAAAAADAAIAAgAAAAAAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAADAAUAAgAAAAAAAAADAAYAAgAAAAAAAAADAAcAAgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAEAAUAAgAAAAAAAAAEAAYAAgAAAAAAAAAEAAcAAgAAAAAAAAAFAP//AgAAAAAAAAAFAAAAAgAAAAAAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAAFAAUAAgAAAAAAAAAFAAYAAgAAAAAAAAAFAAcAAgAAAAAAAAAGAP//AgAAAAAAAAAGAAAAAgAAAAAAAAAGAAEAAgAAAAAAAAAGAAIAAgAAAAAAAAAGAAMAAgAAAAAAAAAGAAQAAgAAAAAAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAAAAAAGAAcAAgAAAAAAAAAHAP//AgAAAAAAAAAHAAAAAgAAAAAAAAAHAAEAAgAAAAAAAAAHAAIAAgAAAAAAAAAHAAMAAgAAAAAAAAAHAAQAAgAAAAAAAAAHAAUAAgAAAAAAAAAHAAYAAgAAAAAAAAAHAAcAAgAAAAAAAAAIAP//AgAAAAAAAAAIAAAAAgAAAAAAAAAIAAEAAgAAAAAAAAAIAAIAAgAAAAAAAAAIAAMAAgAAAAAAAAAIAAQAAgAAAAAAAAAIAAUAAgAAAAAAAAAIAAYAAgAAAAAAAAAIAAcAAgAAAAAAAAAJAP//AgAAAAAAAAAJAAAAAgAAAAAAAAAJAAEAAgAAAAAAAAAJAAIAAgAAAAAAAAAJAAMAAgAAAAAAAAAJAAQAAgAAAAAAAAAJAAUAAgAAAAAAAAAJAAYAAgAAAAAAAAAJAAcAAgAAAAAAAAAKAP//AgAAAAAAAAAKAAAAAgAAAAAAAAAKAAEAAgAAAAAAAAAKAAIAAgAAAAAAAAAKAAMAAgAAAAAAAAAKAAQAAgAAAAAAAAAKAAUAAgAAAAAAAAAKAAYAAgAAAAAAAAAKAAcAAgAAAAAAAAALAP//AgAAAAAAAAALAAAAAgAAAAAAAAALAAEAAgAAAAAAAAALAAIAAgAAAAAAAAALAAMAAgAAAAAAAAALAAQAAgAAAAAAAAALAAUAAgAAAAAAAAALAAYAAgAAAAAAAAALAAcAAgAAAAAAAAAMAP//AgAAAAAAAAAMAAAAAgAAAAAAAAAMAAEAAgAAAAAAAAAMAAIAAgAAAAAAAAAMAAMAAgAAAAAAAAAMAAQAAgAAAAAAAAAMAAUAAgAAAAAAAAAMAAYAAgAAAAAAAAAMAAcAAgAAAAAAAAANAP//AgAAAAAAAAANAAAAAgAAAAAAAAANAAEAAgAAAAAAAAANAAIAAgAAAAAAAAANAAMAAgAAAAAAAAANAAQAAgAAAAAAAAANAAUAAgAAAAAAAAANAAYAAgAAAAAAAAANAAcAAgAAAAAAAAAOAP//AgAAAAAAAAAOAAAAAgAAAAAAAAAOAAEAAgAAAAAAAAAOAAIAAgAAAAAAAAAOAAMAAgAAAAAAAAAOAAQAAgAAAAAAAAAOAAUAAgAAAAAAAAAOAAYAAgAAAAAAAAAOAAcAAgAAAAAAAAD//wEAAgAAAAAAAAA=")
 tile_set = SubResource("TileSet_ijxpu")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="Tilemap"]
+[node name="TileMapLayer" type="TileMapLayer" parent="Tilemap" unique_id=424314024]
 tile_map_data = PackedByteArray("AAANAAcAAAAAAAEAAAAMAAcAAAABAAEAAAALAAcAAAABAAEAAAAKAAcAAAAAAAEAAAAJAAcAAAACAAEAAAAIAAcAAAABAAEAAAAHAAcAAAABAAEAAAAGAAcAAAAAAAEAAAAFAAcAAAABAAEAAAAEAAcAAAACAAEAAAADAAcAAAAAAAEAAAACAAcAAAABAAEAAAABAAcAAAACAAEAAAAAAAcAAAACAAEAAAABAAYAAAAAAAIAAAAEAAYAAAAAAAIAAAAMAAYAAAAAAAIAAAAJAAYAAAAAAAIAAAAAAAYAAAADAAAAAAACAAYAAAACAAAAAAADAAYAAAACAAAAAAAFAAYAAAACAAAAAAAGAAYAAAAAAAAAAAAHAAYAAAABAAAAAAAIAAYAAAACAAAAAAAKAAYAAAABAAAAAAALAAYAAAADAAAAAAANAAYAAAABAAAAAAD//wcAAAAAAAEAAAAOAAcAAAACAAEAAAA=")
 tile_set = SubResource("TileSet_5g6uq")
 
-[node name="Zonas_polen" type="Node2D" parent="."]
+[node name="Zonas_polen" type="Node2D" parent="." unique_id=580868494]
 position = Vector2(0.5, 0.5)
 
-[node name="Zona_polen8" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen8" parent="Zonas_polen" unique_id=1738649306 instance=ExtResource("3_3418m")]
 position = Vector2(110, 51)
 
-[node name="Zona_polen" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen" parent="Zonas_polen" unique_id=1447199784 instance=ExtResource("3_3418m")]
 position = Vector2(66, 51)
 
-[node name="Zona_polen9" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen9" parent="Zonas_polen" unique_id=924523481 instance=ExtResource("3_3418m")]
 position = Vector2(62, 51)
 
-[node name="Zona_polen10" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen10" parent="Zonas_polen" unique_id=1824281755 instance=ExtResource("3_3418m")]
 position = Vector2(58, 51)
 
-[node name="Zona_polen11" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen11" parent="Zonas_polen" unique_id=921795101 instance=ExtResource("3_3418m")]
 position = Vector2(53, 52)
 
-[node name="Zona_polen12" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen12" parent="Zonas_polen" unique_id=2128218569 instance=ExtResource("3_3418m")]
 position = Vector2(49, 52)
 
-[node name="Zona_polen13" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen13" parent="Zonas_polen" unique_id=1709570082 instance=ExtResource("3_3418m")]
 position = Vector2(46, 53)
 
-[node name="Zona_polen14" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen14" parent="Zonas_polen" unique_id=1481170957 instance=ExtResource("3_3418m")]
 position = Vector2(42, 51)
 
-[node name="Zona_polen15" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen15" parent="Zonas_polen" unique_id=1068724822 instance=ExtResource("3_3418m")]
 position = Vector2(30, 53)
 
-[node name="Zona_polen16" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen16" parent="Zonas_polen" unique_id=787623218 instance=ExtResource("3_3418m")]
 position = Vector2(26, 51)
 
-[node name="Zona_polen17" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen17" parent="Zonas_polen" unique_id=662017798 instance=ExtResource("3_3418m")]
 position = Vector2(22, 53)
 
-[node name="Zona_polen18" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen18" parent="Zonas_polen" unique_id=770744395 instance=ExtResource("3_3418m")]
 position = Vector2(18, 51)
 
-[node name="Zona_polen19" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen19" parent="Zonas_polen" unique_id=2084616551 instance=ExtResource("3_3418m")]
 position = Vector2(6, 52)
 
-[node name="Zona_polen20" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen20" parent="Zonas_polen" unique_id=964529686 instance=ExtResource("3_3418m")]
 position = Vector2(2, 51)
 
-[node name="Zona_polen2" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen2" parent="Zonas_polen" unique_id=1516734711 instance=ExtResource("3_3418m")]
 position = Vector2(70, 53)
 
-[node name="Zona_polen3" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen3" parent="Zonas_polen" unique_id=436761997 instance=ExtResource("3_3418m")]
 position = Vector2(82, 51)
 
-[node name="Zona_polen4" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen4" parent="Zonas_polen" unique_id=754718943 instance=ExtResource("3_3418m")]
 position = Vector2(86, 51)
 
-[node name="Zona_polen5" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen5" parent="Zonas_polen" unique_id=1128993145 instance=ExtResource("3_3418m")]
 position = Vector2(90, 51)
 
-[node name="Zona_polen6" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen6" parent="Zonas_polen" unique_id=156785963 instance=ExtResource("3_3418m")]
 position = Vector2(94, 52)
 
-[node name="Zona_polen7" parent="Zonas_polen" instance=ExtResource("3_3418m")]
+[node name="Zona_polen7" parent="Zonas_polen" unique_id=1686185196 instance=ExtResource("3_3418m")]
 position = Vector2(106, 51)
+
+[node name="Contador de días" type="Timer" parent="." unique_id=329378927]
+
+[node name="GUI" parent="." unique_id=794330927 instance=ExtResource("5_o5eqp")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=341708767]
+position = Vector2(56, 28)
+zoom = Vector2(10, 10)
+
+[connection signal="timeout" from="Contador de días" to="." method="_on_contador_de_días_timeout"]

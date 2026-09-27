@@ -29,6 +29,8 @@ offset_right = 4.0
 theme_type_variation = &"FlatButton"
 
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="abeja_anadida" from="GUI_panal" to="." method="_on_gui_panal_abeja_anadida"]
 [connection signal="celda_creada" from="GUI_panal" to="." method="_on_gui_panal_celda_creada"]
+[connection signal="mejora_comprada" from="GUI_panal" to="." method="_on_gui_panal_mejora_comprada"]
 [connection signal="sub_nivel" from="GUI_panal" to="." method="_on_gui_panal_sub_nivel"]
 [connection signal="button_up" from="GUI_Boton" to="." method="_on_gui_boton_button_up"]

@@ -1,0 +1,15 @@
+"id","nombre","icono","precio","variable_mejorar","cuanto_mejora"
+1,"Mejora 1","abeja.png",5,"vel_mov",1
+2,"Mejora 2","abeja.png",5,"vel_pol",2
+3,"Mejora 3","abeja.png",5,"alma_polen",3
+4,"Mejora 4","abeja.png",5,"alma_nectar",4
+5,"Mejora 5","abeja.png",5,"vel_const",5
+6,"Mejora 6","abeja.png",5,"vel_mov",6
+7,"Mejora 7","abeja.png",5,"vel_pol",7
+8,"Mejora 8","abeja.png",5,"alma_polen",8
+9,"Mejora 9","abeja.png",5,"alma_nectar",9
+10,"Mejora 10","abeja.png",5,"vel_const",10
+11,"Mejora 11","abeja.png",5,"vel_mov",11
+12,"Mejora 12","abeja.png",5,"vel_pol",12
+13,"Mejora 13","abeja.png",5,"alma_polen",13
+14,"Mejora 14","abeja.png",5,"alma_nectar",14
